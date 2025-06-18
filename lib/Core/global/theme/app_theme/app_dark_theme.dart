@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_colors.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_text_styles.dart';
+import 'package:task_management_app/Core/utils/app_constants.dart';
 
 class AppDarkTheme {
   static ThemeData getTheme(BuildContext context) {
@@ -8,33 +9,17 @@ class AppDarkTheme {
 
     return ThemeData(
       brightness: Brightness.dark,
-      scaffoldBackgroundColor: colors.background,
       primaryColor: colors.primary,
-      cardColor: colors.light,
+      fontFamily: AppConstants.appFontFamily,
+      scaffoldBackgroundColor: colors.background,
       appBarTheme: AppBarTheme(
-        backgroundColor: colors.background,
+        backgroundColor: colors.primary,
         elevation: 0,
         scrolledUnderElevation: 0,
       ),
-      inputDecorationTheme: InputDecorationTheme(
-        fillColor: colors.textFormFieldBg,
-        filled: true,
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: colors.grey),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: colors.grey),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: colors.primary),
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          foregroundColor: colors.light,
+          foregroundColor: colors.dark,
           backgroundColor: colors.primary,
           textStyle: AppTextStyles.of(context).text24Medium,
           minimumSize: const Size(215, 60),

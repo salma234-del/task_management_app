@@ -17,7 +17,7 @@ class _SplashViewState extends State<SplashView> {
       const Duration(seconds: 3),
       () {
         if (!mounted) return;
-        GoRouter.of(context).push(AppRouter.tasksList);
+        GoRouter.of(context).pushReplacement(AppRouter.tasksList);
       },
     );
     super.initState();
