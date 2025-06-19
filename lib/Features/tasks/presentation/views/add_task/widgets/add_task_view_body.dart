@@ -22,6 +22,9 @@ class AddTaskViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (taskToEdit != null) {
+      context.read<AddTaskCubit>().initializeFields(taskToEdit!);
+    }
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 30),
@@ -77,10 +80,7 @@ class AddTaskViewBody extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       if (bloc.formKey.currentState!.validate()) {
-                        if (taskToEdit != null) {
-                        } else {
-                          bloc.addTask();
-                        }
+                        bloc.addTask(taskToEdit);
                       }
                     },
                     child: Text(
@@ -111,7 +111,7 @@ class AddTaskViewBody extends StatelessWidget {
     context.read<GetTasksByCategoryCubit>().getTasksByCategory(TaskCategory.all);
     showCustomSnackBar(
       context: context,
-      message: AppStrings.taskAdded,
+      message: taskToEdit == null ? AppStrings.taskAdded : AppStrings.taskUpdated,
       isSuccess: true,
     );
   }

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_management_app/Core/di/service_locator.dart';
+import 'package:task_management_app/Features/tasks/domain/entities/task_entity.dart';
 import 'package:task_management_app/Features/tasks/presentation/cubits/add_task_cubit/add_task_cubit.dart';
 import 'package:task_management_app/Features/tasks/presentation/views/add_task/widgets/add_task_view_body.dart';
 
 class AddTaskView extends StatelessWidget {
-  const AddTaskView({super.key});
+  const AddTaskView({
+    this.taskToEdit,
+    super.key,
+  });
+
+  final TaskEntity? taskToEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class AddTaskView extends StatelessWidget {
         },
         child: SafeArea(
           child: Scaffold(
-            body: AddTaskViewBody(),
+            body: AddTaskViewBody(taskToEdit: taskToEdit),
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:task_management_app/Features/splash/presentation/views/splash_view.dart';
+import 'package:task_management_app/Features/tasks/domain/entities/task_entity.dart';
 import 'package:task_management_app/Features/tasks/presentation/views/add_task/add_task_view.dart';
 import 'package:task_management_app/Features/tasks/presentation/views/tasks_list/tasks_list_view.dart';
 
@@ -20,7 +21,13 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: addTask,
-        builder: (context, state) => AddTaskView(),
+        builder: (context, state) {
+          final task = state.extra as TaskEntity?;
+          if (task == null) {
+            return AddTaskView();
+          }
+          return AddTaskView(taskToEdit: task);
+        },
       ),
     ],
   );

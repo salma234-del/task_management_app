@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:task_management_app/Core/utils/app_router.dart';
 import 'package:task_management_app/Core/utils/app_strings.dart';
 import 'package:task_management_app/Core/utils/helper_functions/show_custom_snack_bar.dart';
 import 'package:task_management_app/Core/widgets/empty_data_widget.dart';
@@ -66,7 +68,7 @@ class TasksList extends StatelessWidget {
                 onDone: () => _onDone(context, state, index),
                 onUndo: () => _onUndo(context, state, index),
                 onDelete: () => _onDelete(context, state, index),
-                onEdit: () {},
+                onEdit: () => _onEdit(context, state, index),
               ),
             );
           } else {
@@ -114,5 +116,9 @@ class TasksList extends StatelessWidget {
     context.read<GetTasksByCategoryCubit>().getTasksByCategory(
           state.selectedCategory,
         );
+  }
+
+  void _onEdit(BuildContext context, GetTasksByCategorySuccess state, int index) {
+    GoRouter.of(context).push(AppRouter.addTask, extra: state.tasks[index]);
   }
 }

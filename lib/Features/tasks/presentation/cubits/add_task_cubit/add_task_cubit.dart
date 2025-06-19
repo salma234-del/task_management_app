@@ -15,14 +15,14 @@ class AddTaskCubit extends Cubit<AddTaskState> {
   final taskTitleController = TextEditingController();
   final taskDescriptionController = TextEditingController();
 
-  Future<void> addTask() async {
+  Future<void> addTask(TaskEntity? task) async {
     emit(AddTaskLoading());
     final result = await usecase.call(
       TaskEntity(
-        id: Uuid().v4(),
+        id: task == null ? Uuid().v4() : task.id,
         title: taskTitleController.text,
         description: taskDescriptionController.text,
-        createdAt: DateTime.now(),
+        createdAt: task == null ? DateTime.now() : task.createdAt,
       ),
     );
 
@@ -30,6 +30,11 @@ class AddTaskCubit extends Cubit<AddTaskState> {
       (failure) => emit(AddTaskFailure(failure.message)),
       (success) => emit(AddTaskSuccess()),
     );
+  }
+
+  void initializeFields(TaskEntity taskToEdit) {
+    taskTitleController.text = taskToEdit.title;
+    taskDescriptionController.text = taskToEdit.description;
   }
 
   @override
