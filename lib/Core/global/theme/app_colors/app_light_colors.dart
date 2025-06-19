@@ -15,12 +15,12 @@ const Color primaryTextLight = Color(0xff000000);
 const Color secondaryTextLight = Color(0xff797C7B);
 
 const List<Color> cardColorsLight = [
-    Color(0xffADF7B6),
-    Color(0xffA817C0),
-    Color(0xffFFC09F),
-    Color(0xff8FFFF8),
-    Color(0xffCC2222),
-    Color(0xffFBF1BA),
-    Color(0xff7075E5),
-    Color(0xffFF36F7),
-  ];
+  Color(0xffADF7B6),
+  Color(0xffA817C0),
+  Color(0xffFFC09F),
+  Color(0xff8FFFF8),
+  Color(0xffCC2222),
+  Color(0xffFBF1BA),
+  Color(0xff7075E5),
+  Color(0xffFF36F7),
+];

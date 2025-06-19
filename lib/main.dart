@@ -21,8 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => GetTasksByCategoryCubit(sl())
-            ..getTasksByCategory(TaskCategory.all),
+          create: (context) => GetTasksByCategoryCubit(sl())..getTasksByCategory(TaskCategory.all),
         )
       ],
       child: MaterialApp.router(

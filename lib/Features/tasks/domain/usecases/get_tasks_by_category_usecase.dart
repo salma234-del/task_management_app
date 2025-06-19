@@ -6,15 +6,13 @@ import 'package:task_management_app/Core/usecase/base_usecase.dart';
 import 'package:task_management_app/Features/tasks/domain/entities/task_entity.dart';
 import 'package:task_management_app/Features/tasks/domain/repository/base_tasks_repo.dart';
 
-class GetTasksByCategoryUsecase
-    extends BaseUsecase<List<TaskEntity>, GetTasksByCategoryUsecaseParams> {
+class GetTasksByCategoryUsecase extends BaseUsecase<List<TaskEntity>, GetTasksByCategoryUsecaseParams> {
   final BaseTasksRepo tasksRepo;
 
   GetTasksByCategoryUsecase(this.tasksRepo);
 
   @override
-  Future<Either<Failure, List<TaskEntity>>> call(
-      [GetTasksByCategoryUsecaseParams? params]) async {
+  Future<Either<Failure, List<TaskEntity>>> call([GetTasksByCategoryUsecaseParams? params]) async {
     final category = params?.category ?? TaskCategory.all;
 
     final result = await tasksRepo.getTasksByCategory(category);

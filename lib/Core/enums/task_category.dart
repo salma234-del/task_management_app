@@ -3,6 +3,7 @@ enum TaskCategory {
   todo,
   done,
 }
+
 extension TaskCategoryExtension on TaskCategory {
   String get name {
     switch (this) {

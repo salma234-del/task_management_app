@@ -13,8 +13,7 @@ class GetTasksByCategoryCubit extends Cubit<GetTasksByCategoryState> {
 
   Future<void> getTasksByCategory(TaskCategory category) async {
     emit(GetTasksByCategoryLoading());
-    final result =
-        await usecase.call(GetTasksByCategoryUsecaseParams(category: category));
+    final result = await usecase.call(GetTasksByCategoryUsecaseParams(category: category));
 
     result.fold(
       (failure) => emit(GetTasksByCategoryFailure(failure.message)),

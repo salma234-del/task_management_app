@@ -67,7 +67,7 @@ class TaskWidget extends StatelessWidget {
         SlidableAction(
           onPressed: (_) => onEdit?.call(),
           icon: Icons.edit,
-          foregroundColor: AppColors.of(context).secondaryText,
+          foregroundColor: AppColors.of(context).light,
           backgroundColor: Colors.blue,
           label: AppStrings.edit,
         ),
@@ -79,7 +79,7 @@ class TaskWidget extends StatelessWidget {
     if (category == TaskCategory.all) return null;
 
     final colors = AppColors.of(context);
-    final textColor = colors.secondaryText;
+    final textColor = colors.light;
 
     if (category == TaskCategory.done) {
       return ActionPane(

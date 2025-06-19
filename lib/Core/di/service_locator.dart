@@ -10,6 +10,7 @@ import 'package:task_management_app/Features/tasks/data/repository/tasks_repo_im
 import 'package:task_management_app/Features/tasks/domain/repository/base_tasks_repo.dart';
 import 'package:task_management_app/Features/tasks/domain/usecases/add_task_usecase.dart';
 import 'package:task_management_app/Features/tasks/domain/usecases/get_tasks_by_category_usecase.dart';
+import 'package:task_management_app/Features/tasks/domain/usecases/update_task_usecase.dart';
 
 final sl = GetIt.instance;
 
@@ -22,8 +23,7 @@ Future<void> setupServiceLocator() async {
   );
 
   // 3. Data Source
-  sl.registerLazySingleton<TasksLocalDataSource>(
-      () => TasksLocalDatasourceImpl(sl()));
+  sl.registerLazySingleton<TasksLocalDataSource>(() => TasksLocalDatasourceImpl(sl()));
 
   // 4. Repository
   sl.registerLazySingleton<BaseTasksRepo>(() => TasksRepoImpl(sl()));
@@ -31,4 +31,5 @@ Future<void> setupServiceLocator() async {
   // 5. Use Cases
   sl.registerLazySingleton(() => AddTaskUsecase(sl()));
   sl.registerLazySingleton(() => GetTasksByCategoryUsecase(sl()));
+  sl.registerLazySingleton(() => UpdateTaskUsecase(sl()));
 }

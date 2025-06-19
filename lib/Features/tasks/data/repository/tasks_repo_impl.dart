@@ -24,12 +24,22 @@ class TasksRepoImpl extends BaseTasksRepo {
   }
 
   @override
-  Future<Either<Failure, List<TaskEntity>>> getTasksByCategory(
-      TaskCategory category) async {
+  Future<Either<Failure, List<TaskEntity>>> getTasksByCategory(TaskCategory category) async {
     try {
       final tasks = await tasksLocalDataSource.getTasksByCategory(category);
       final taskEntities = tasks.map((task) => task.toEntity()).toList();
       return Right(taskEntities);
+    } on CacheException catch (e) {
+      return Left(CacheFailure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateTask({required TaskEntity task}) async {
+    try {
+      final model = TaskModel.fromEntity(task);
+      await tasksLocalDataSource.updateTask(task: model);
+      return Right(null);
     } on CacheException catch (e) {
       return Left(CacheFailure(message: e.message));
     }

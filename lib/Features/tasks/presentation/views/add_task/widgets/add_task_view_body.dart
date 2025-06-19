@@ -52,9 +52,7 @@ class AddTaskViewBody extends StatelessWidget {
                           children: [
                             Image.asset(Assets.imagesStar),
                             Text(
-                              taskToEdit == null
-                                  ? AppStrings.newTask
-                                  : AppStrings.editTask,
+                              taskToEdit == null ? AppStrings.newTask : AppStrings.editTask,
                               style: AppTextStyles.of(context).text24Medium,
                             ),
                           ],
@@ -110,9 +108,7 @@ class AddTaskViewBody extends StatelessWidget {
   void _buildAddTaskSuccess(BuildContext context) {
     Navigator.of(context).pop();
     GoRouter.of(context).pop();
-    context
-        .read<GetTasksByCategoryCubit>()
-        .getTasksByCategory(TaskCategory.all);
+    context.read<GetTasksByCategoryCubit>().getTasksByCategory(TaskCategory.all);
     showCustomSnackBar(
       context: context,
       message: AppStrings.taskAdded,

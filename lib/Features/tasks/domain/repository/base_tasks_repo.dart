@@ -6,4 +6,5 @@ import 'package:task_management_app/Features/tasks/domain/entities/task_entity.d
 abstract class BaseTasksRepo {
   Future<Either<Failure, void>> addTask({required final TaskEntity task});
   Future<Either<Failure, List<TaskEntity>>> getTasksByCategory(TaskCategory category);
+  Future<Either<Failure, void>> updateTask({required final TaskEntity task});
 }
