@@ -4,7 +4,7 @@ import 'package:task_management_app/Core/enums/task_category.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_colors.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_text_styles.dart';
 import 'package:task_management_app/Core/utils/app_strings.dart';
-import 'package:task_management_app/Features/tasks/domain/entities/task.dart';
+import 'package:task_management_app/Features/tasks/domain/entities/task_entity.dart';
 
 class TaskWidget extends StatelessWidget {
   const TaskWidget({
@@ -17,7 +17,7 @@ class TaskWidget extends StatelessWidget {
     super.key,
   });
 
-  final Task task;
+  final TaskEntity task;
   final TaskCategory category;
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;

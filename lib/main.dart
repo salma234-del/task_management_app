@@ -3,9 +3,9 @@ import 'package:task_management_app/Core/global/theme/app_theme/app_light_theme.
 import 'package:task_management_app/Core/utils/helper_functions/init_main.dart';
 import 'package:task_management_app/Core/utils/app_router.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initMain();
+  await initMain();
   runApp(const MyApp());
 }
 
