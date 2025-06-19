@@ -8,8 +8,8 @@ class DeleteTaskUsecase extends BaseUsecase<void, DeleteTaskUsecaseParams> {
   DeleteTaskUsecase(this.tasksRepo);
 
   @override
-  Future<Either<Failure, void>> call([DeleteTaskUsecaseParams? params]) async {
-    return await tasksRepo.deleteTask(taskId: params!.taskId);
+  Future<Either<Failure, void>> call(DeleteTaskUsecaseParams params) async {
+    return await tasksRepo.deleteTask(taskId: params.taskId);
   }
 }
 

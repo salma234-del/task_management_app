@@ -9,7 +9,7 @@ class AddTaskUsecase extends BaseUsecase<void, TaskEntity> {
   AddTaskUsecase(this.tasksRepo);
 
   @override
-  Future<Either<Failure, void>> call([TaskEntity? params]) async {
-    return await tasksRepo.addTask(task: params!);
+  Future<Either<Failure, void>> call(TaskEntity params) async {
+    return await tasksRepo.addTask(task: params);
   }
 }

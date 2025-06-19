@@ -12,8 +12,8 @@ class GetTasksByCategoryUsecase extends BaseUsecase<List<TaskEntity>, GetTasksBy
   GetTasksByCategoryUsecase(this.tasksRepo);
 
   @override
-  Future<Either<Failure, List<TaskEntity>>> call([GetTasksByCategoryUsecaseParams? params]) async {
-    final category = params?.category ?? TaskCategory.all;
+  Future<Either<Failure, List<TaskEntity>>> call(GetTasksByCategoryUsecaseParams params) async {
+    final category = params.category;
 
     final result = await tasksRepo.getTasksByCategory(category);
     // Filter tasks based on the category
