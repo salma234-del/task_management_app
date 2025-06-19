@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_text_styles.dart';
+import 'package:task_management_app/Core/utils/app_router.dart';
 import 'package:task_management_app/Core/utils/app_strings.dart';
 import 'package:task_management_app/Core/utils/assets.dart';
 import 'package:task_management_app/Core/utils/helper_functions/show_custom_loading.dart';
@@ -84,9 +85,7 @@ class AddTaskViewBody extends StatelessWidget {
                       }
                     },
                     child: Text(
-                      taskToEdit == null
-                          ? AppStrings.addTask
-                          : AppStrings.edit,
+                      taskToEdit == null ? AppStrings.addTask : AppStrings.edit,
                     ),
                   ),
                 ],
@@ -109,6 +108,7 @@ class AddTaskViewBody extends StatelessWidget {
 
   void _buildAddTaskSuccess(BuildContext context) {
     GoRouter.of(context).pop();
+    GoRouter.of(context).pushReplacement(AppRouter.tasksList);
     showCustomSnackBar(
       context: context,
       message: AppStrings.taskAdded,

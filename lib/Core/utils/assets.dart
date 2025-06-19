@@ -4,7 +4,7 @@ class Assets {
   
   /// Assets for imagesHomeNoData
   /// assets/images/home_no_data.png
-  static const String imagesHomeNoData = "assets/images/home_no_data.png";
+  static const String imagesNoData = "assets/images/home_no_data.png";
 
   /// Assets for imagesSplashLogo
   /// assets/images/splash_logo.png
