@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:task_management_app/Core/enums/task_category.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_text_styles.dart';
-import 'package:task_management_app/Core/utils/app_router.dart';
 import 'package:task_management_app/Core/utils/app_strings.dart';
 import 'package:task_management_app/Core/utils/assets.dart';
 import 'package:task_management_app/Core/utils/helper_functions/show_custom_loading.dart';
@@ -10,6 +10,7 @@ import 'package:task_management_app/Core/utils/helper_functions/show_custom_snac
 import 'package:task_management_app/Core/widgets/custom_text_form_field.dart';
 import 'package:task_management_app/Features/tasks/domain/entities/task_entity.dart';
 import 'package:task_management_app/Features/tasks/presentation/cubits/add_task_cubit/add_task_cubit.dart';
+import 'package:task_management_app/Features/tasks/presentation/cubits/get_tasks_by_category_cubit/get_tasks_by_category_cubit.dart';
 import 'package:task_management_app/Features/tasks/presentation/views/add_task/widgets/close_icon.dart';
 
 class AddTaskViewBody extends StatelessWidget {
@@ -107,8 +108,11 @@ class AddTaskViewBody extends StatelessWidget {
   }
 
   void _buildAddTaskSuccess(BuildContext context) {
+    Navigator.of(context).pop();
     GoRouter.of(context).pop();
-    GoRouter.of(context).pushReplacement(AppRouter.tasksList);
+    context
+        .read<GetTasksByCategoryCubit>()
+        .getTasksByCategory(TaskCategory.all);
     showCustomSnackBar(
       context: context,
       message: AppStrings.taskAdded,
@@ -118,6 +122,5 @@ class AddTaskViewBody extends StatelessWidget {
 
   Future<void> _buildAddTaskLoading(BuildContext context) async {
     await showCustomLoading(context: context);
-    if (context.mounted) Navigator.of(context).pop();
   }
 }

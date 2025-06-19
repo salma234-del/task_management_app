@@ -15,7 +15,7 @@ abstract class AppRouter {
         builder: (context, state) => SplashView(),
       ),
       GoRoute(
-        path: tasksList,
+        path: AppRouter.tasksList,
         builder: (context, state) => TasksListView(),
       ),
       GoRoute(
