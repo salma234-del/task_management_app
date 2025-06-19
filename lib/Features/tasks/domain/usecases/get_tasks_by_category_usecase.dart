@@ -20,14 +20,25 @@ class GetTasksByCategoryUsecase
     final result = await tasksRepo.getTasksByCategory(category);
     // Filter tasks based on the category
     return result.map((tasks) {
+      // Filter based on category
+      List<TaskEntity> filteredTasks;
       switch (category) {
         case TaskCategory.todo:
-          return tasks.where((task) => !task.isCompleted).toList();
+          filteredTasks = tasks.where((task) => !task.isCompleted).toList();
+          break;
         case TaskCategory.done:
-          return tasks.where((task) => task.isCompleted).toList();
+          filteredTasks = tasks.where((task) => task.isCompleted).toList();
+          break;
         default:
-          return tasks;
+          filteredTasks = tasks;
       }
+
+      // Sort tasks by createdAt descending (newest first)
+      filteredTasks.sort(
+        (a, b) => b.createdAt.compareTo(a.createdAt),
+      );
+
+      return filteredTasks;
     });
   }
 }
