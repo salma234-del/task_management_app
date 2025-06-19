@@ -20,8 +20,8 @@ class AddTaskCubit extends Cubit<AddTaskState> {
     final result = await usecase.call(
       TaskEntity(
         id: task == null ? Uuid().v4() : task.id,
-        title: taskTitleController.text,
-        description: taskDescriptionController.text,
+        title: taskTitleController.text.trim(),
+        description: taskDescriptionController.text.trim(),
         createdAt: task == null ? DateTime.now() : task.createdAt,
       ),
     );

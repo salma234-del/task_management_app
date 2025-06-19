@@ -24,4 +24,5 @@ abstract class AppStrings {
   static const String undo = 'Undo';
   static const String newTask = 'New Task';
   static const String noData = 'No Data Available';
+  static const String emptyField = 'This field is required';
 }
