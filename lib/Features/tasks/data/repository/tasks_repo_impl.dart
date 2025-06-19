@@ -44,4 +44,14 @@ class TasksRepoImpl extends BaseTasksRepo {
       return Left(CacheFailure(message: e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteTask({required String taskId}) async {
+    try {
+      await tasksLocalDataSource.deleteTask(taskId: taskId);
+      return Right(null);
+    } on CacheException catch (e) {
+      return Left(CacheFailure(message: e.message));
+    }
+  }
 }

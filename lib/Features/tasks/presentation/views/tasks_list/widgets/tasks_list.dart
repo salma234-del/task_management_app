@@ -4,6 +4,7 @@ import 'package:task_management_app/Core/utils/app_strings.dart';
 import 'package:task_management_app/Core/utils/helper_functions/show_custom_snack_bar.dart';
 import 'package:task_management_app/Core/widgets/empty_data_widget.dart';
 import 'package:task_management_app/Features/tasks/domain/entities/task_entity.dart';
+import 'package:task_management_app/Features/tasks/presentation/cubits/delete_task_cubit/delete_task_cubit.dart';
 import 'package:task_management_app/Features/tasks/presentation/cubits/get_tasks_by_category_cubit/get_tasks_by_category_cubit.dart';
 import 'package:task_management_app/Features/tasks/presentation/cubits/update_task_cubit/update_task_cubit.dart';
 import 'package:task_management_app/Features/tasks/presentation/views/tasks_list/widgets/task_widget.dart';
@@ -22,6 +23,24 @@ class TasksList extends StatelessWidget {
               _onUpdateTaskSuccess(context);
             } else if (state is UpdateTaskFailure) {
               _onUpdateTaskFailure(context, state);
+            }
+          },
+        ),
+        BlocListener<DeleteTaskCubit, DeleteTaskState>(
+          listener: (context, state) {
+            if (state is DeleteTaskFailure) {
+              showCustomSnackBar(
+                context: context,
+                message: state.error,
+                isSuccess: false,
+              );
+            }
+            if (state is DeleteTaskSuccess) {
+              showCustomSnackBar(
+                context: context,
+                message: AppStrings.taskDeleted,
+                isSuccess: true,
+              );
             }
           },
         ),
@@ -44,13 +63,9 @@ class TasksList extends StatelessWidget {
               itemBuilder: (context, index) => TaskWidget(
                 task: state.tasks[index],
                 category: state.selectedCategory,
-                onDone: () {
-                  _onDone(context, state, index);
-                },
-                onUndo: () {
-                  _onUndo(context, state, index);
-                },
-                onDelete: () {},
+                onDone: () => _onDone(context, state, index),
+                onUndo: () => _onUndo(context, state, index),
+                onDelete: () => _onDelete(context, state, index),
                 onEdit: () {},
               ),
             );
@@ -89,6 +104,13 @@ class TasksList extends StatelessWidget {
 
   void _onDone(BuildContext context, GetTasksByCategorySuccess state, int index) {
     context.read<UpdateTaskCubit>().updateTask(state.tasks[index].copyWith(isCompleted: true));
+    context.read<GetTasksByCategoryCubit>().getTasksByCategory(
+          state.selectedCategory,
+        );
+  }
+
+  void _onDelete(BuildContext context, GetTasksByCategorySuccess state, int index) {
+    context.read<DeleteTaskCubit>().deleteTask(state.tasks[index].id);
     context.read<GetTasksByCategoryCubit>().getTasksByCategory(
           state.selectedCategory,
         );

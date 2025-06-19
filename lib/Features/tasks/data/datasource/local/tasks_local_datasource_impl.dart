@@ -23,4 +23,9 @@ class TasksLocalDatasourceImpl extends TasksLocalDataSource {
   Future<void> updateTask({required TaskModel task}) async {
     await storage.save(task.id, task); // Overwrites the old one
   }
+
+  @override
+  Future<void> deleteTask({required String taskId}) async {
+    await storage.delete(taskId);
+  }
 }

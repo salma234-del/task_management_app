@@ -5,6 +5,7 @@ import 'package:task_management_app/Core/di/service_locator.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_text_styles.dart';
 import 'package:task_management_app/Core/utils/app_router.dart';
 import 'package:task_management_app/Core/utils/app_strings.dart';
+import 'package:task_management_app/Features/tasks/presentation/cubits/delete_task_cubit/delete_task_cubit.dart';
 import 'package:task_management_app/Features/tasks/presentation/cubits/update_task_cubit/update_task_cubit.dart';
 import 'package:task_management_app/Features/tasks/presentation/views/tasks_list/widgets/tasks_list_view_body.dart';
 
@@ -16,6 +17,7 @@ class TasksListView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<UpdateTaskCubit>(create: (_) => UpdateTaskCubit(sl())),
+        BlocProvider<DeleteTaskCubit>(create: (_) => DeleteTaskCubit(sl())),
       ],
       child: SafeArea(
         child: Scaffold(

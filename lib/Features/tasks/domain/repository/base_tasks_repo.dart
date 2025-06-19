@@ -7,4 +7,5 @@ abstract class BaseTasksRepo {
   Future<Either<Failure, void>> addTask({required final TaskEntity task});
   Future<Either<Failure, List<TaskEntity>>> getTasksByCategory(TaskCategory category);
   Future<Either<Failure, void>> updateTask({required final TaskEntity task});
+  Future<Either<Failure, void>> deleteTask({required final String taskId});
 }

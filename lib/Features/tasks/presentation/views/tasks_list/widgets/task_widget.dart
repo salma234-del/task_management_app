@@ -42,7 +42,9 @@ class TaskWidget extends StatelessWidget {
           children: [
             Text(
               task.title,
-              style: AppTextStyles.of(context).text16Medium,
+              style: AppTextStyles.of(context).text16Medium.copyWith(
+                    decoration: task.isCompleted ? TextDecoration.lineThrough : TextDecoration.none,
+                  ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
