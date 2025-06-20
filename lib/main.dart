@@ -9,6 +9,7 @@ import 'package:task_management_app/Core/global/theme/theme_cubit/theme_state.da
 import 'package:task_management_app/Core/utils/helper_functions/init_main.dart';
 import 'package:task_management_app/Core/utils/app_router.dart';
 import 'package:task_management_app/Features/tasks/presentation/cubits/get_tasks_by_category_cubit/get_tasks_by_category_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,13 +33,19 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            routerConfig: AppRouter.router,
-            themeMode: state.themeMode,
-            theme: AppLightTheme.getTheme(context),
-            darkTheme: AppDarkTheme.getTheme(context),
-          );
+          return ScreenUtilInit(
+              designSize: const Size(360, 690),
+              minTextAdapt: true,
+              splitScreenMode: true,
+              builder: (_, child) {
+                return MaterialApp.router(
+                  debugShowCheckedModeBanner: false,
+                  routerConfig: AppRouter.router,
+                  themeMode: state.themeMode,
+                  theme: AppLightTheme.getTheme(context),
+                  darkTheme: AppDarkTheme.getTheme(context),
+                );
+              });
         },
       ),
     );

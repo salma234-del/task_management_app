@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_colors.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_text_styles.dart';
 import 'package:task_management_app/Core/utils/app_constants.dart';
@@ -28,11 +29,14 @@ class AppDarkTheme {
           ),
         ),
       ),
+      iconTheme: IconThemeData(
+        size: 20.sp,
+      ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         elevation: 0,
         backgroundColor: colors.primary,
         foregroundColor: colors.light,
-        iconSize: 25,
+        iconSize: 25.sp,
         shape: const CircleBorder(),
       ),
       useMaterial3: true,

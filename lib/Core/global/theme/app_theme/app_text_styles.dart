@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_colors.dart';
 
 class AppTextStyles {
@@ -37,67 +38,67 @@ class AppTextStyles {
 
     return AppTextStyles(
       text64Bold: TextStyle(
-        fontSize: 64,
+        fontSize: 64.sp,
         fontWeight: FontWeight.w600,
         color: colors.primaryText,
       ),
       text24ExtraBold: TextStyle(
-        fontSize: 24,
+        fontSize: 24.sp,
         fontWeight: FontWeight.w900,
         color: colors.primaryText,
       ),
       text24Medium: TextStyle(
-        fontSize: 24,
+        fontSize: 24.sp,
         fontWeight: FontWeight.w500,
         color: colors.primaryText,
       ),
       text20Regular: TextStyle(
-        fontSize: 20,
+        fontSize: 20.sp,
         fontWeight: FontWeight.w400,
         color: colors.primaryText,
       ),
       text18Bold: TextStyle(
-        fontSize: 18,
+        fontSize: 18.sp,
         fontWeight: FontWeight.w700,
         color: colors.primary,
       ),
       text18Medium: TextStyle(
-        fontSize: 18,
+        fontSize: 18.sp,
         fontWeight: FontWeight.w500,
         color: colors.primaryText,
       ),
       text16Medium: TextStyle(
-        fontSize: 16,
+        fontSize: 16.sp,
         fontWeight: FontWeight.w500,
         color: colors.primaryText,
       ),
       text14Light: TextStyle(
-        fontSize: 14,
+        fontSize: 14.sp,
         fontWeight: FontWeight.w300,
         color: colors.primaryText,
       ),
       text14Regular: TextStyle(
-        fontSize: 14,
+        fontSize: 14.sp,
         fontWeight: FontWeight.w400,
         color: colors.primaryText,
       ),
       text14Medium: TextStyle(
-        fontSize: 14,
+        fontSize: 14.sp,
         fontWeight: FontWeight.w500,
         color: colors.primaryText,
       ),
       text14Bold: TextStyle(
-        fontSize: 14,
+        fontSize: 14.sp,
         fontWeight: FontWeight.w700,
         color: colors.primaryText,
       ),
       text12Medium: TextStyle(
-        fontSize: 12,
+        fontSize: 12.sp,
         fontWeight: FontWeight.w500,
         color: colors.primaryText,
       ),
       text12Bold: TextStyle(
-        fontSize: 12,
+        fontSize: 12.sp,
         fontWeight: FontWeight.w700,
         color: colors.primaryText,
       ),
