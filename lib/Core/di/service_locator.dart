@@ -23,6 +23,10 @@ Future<void> setupServiceLocator() async {
     () => HiveStorageService<TaskModel>(AppConstants.tasksBox),
   );
 
+  sl.registerLazySingleton<LocalStorageService<String>>(
+    () => HiveStorageService<String>(AppConstants.appSettingsBox),
+  );
+
   // 3. Data Source
   sl.registerLazySingleton<TasksLocalDataSource>(() => TasksLocalDatasourceImpl(sl()));
 

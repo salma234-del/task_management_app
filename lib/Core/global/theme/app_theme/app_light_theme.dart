@@ -29,6 +29,7 @@ class AppLightTheme {
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
+        elevation: 0,
         backgroundColor: colors.background,
         iconSize: 25,
         shape: CircleBorder(),

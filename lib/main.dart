@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_management_app/Core/di/service_locator.dart';
 import 'package:task_management_app/Core/enums/task_category.dart';
+import 'package:task_management_app/Core/global/theme/app_theme/app_dark_theme.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_light_theme.dart';
+import 'package:task_management_app/Core/global/theme/theme_cubit/theme_cubit.dart';
+import 'package:task_management_app/Core/global/theme/theme_cubit/theme_state.dart';
 import 'package:task_management_app/Core/utils/helper_functions/init_main.dart';
 import 'package:task_management_app/Core/utils/app_router.dart';
 import 'package:task_management_app/Features/tasks/presentation/cubits/get_tasks_by_category_cubit/get_tasks_by_category_cubit.dart';
@@ -22,12 +25,21 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => GetTasksByCategoryCubit(sl())..getTasksByCategory(TaskCategory.all),
-        )
+        ),
+        BlocProvider(
+          create: (context) => ThemeCubit(sl())..loadTheme(),
+        ),
       ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: AppLightTheme.getTheme(context),
-        routerConfig: AppRouter.router,
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            routerConfig: AppRouter.router,
+            themeMode: state.themeMode,
+            theme: AppLightTheme.getTheme(context),
+            darkTheme: AppDarkTheme.getTheme(context),
+          );
+        },
       ),
     );
   }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task_management_app/Core/di/service_locator.dart';
+import 'package:task_management_app/Core/global/theme/app_theme/app_colors.dart';
 import 'package:task_management_app/Core/global/theme/app_theme/app_text_styles.dart';
+import 'package:task_management_app/Core/global/theme/theme_cubit/theme_cubit.dart';
 import 'package:task_management_app/Core/utils/app_router.dart';
 import 'package:task_management_app/Core/utils/app_strings.dart';
 import 'package:task_management_app/Features/tasks/presentation/cubits/delete_task_cubit/delete_task_cubit.dart';
@@ -21,6 +23,7 @@ class TasksListView extends StatelessWidget {
       ],
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: AppColors.of(context).background,
           appBar: AppBar(
             title: Text(
               AppStrings.appName,
@@ -31,12 +34,17 @@ class TasksListView extends StatelessWidget {
                 icon: const Icon(Icons.search),
                 onPressed: () => GoRouter.of(context).push(AppRouter.searchTasks),
               ),
+              IconButton(
+                icon: const Icon(Icons.light_mode),
+                onPressed: () => context.read<ThemeCubit>().toggleTheme(),
+              ),
             ],
           ),
           body: TasksListViewBody(),
           floatingActionButton: FloatingActionButton(
+            backgroundColor: AppColors.of(context).primary,
             onPressed: () => GoRouter.of(context).push(AppRouter.addTask),
-            child: const Icon(Icons.add),
+            child: Icon(Icons.add),
           ),
         ),
       ),

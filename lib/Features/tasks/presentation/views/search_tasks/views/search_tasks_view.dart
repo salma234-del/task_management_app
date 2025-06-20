@@ -14,8 +14,8 @@ class SearchTasksView extends StatelessWidget {
       create: (context) => SearchTasksCubit(sl()),
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: AppColors.of(context).pinkBg,
-          appBar: AppBar(backgroundColor: AppColors.of(context).pinkBg),
+          backgroundColor: AppColors.of(context).background,
+          appBar: AppBar(backgroundColor: AppColors.of(context).background),
           body: SearchTasksViewBody(),
         ),
       ),

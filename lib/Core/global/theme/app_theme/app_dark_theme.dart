@@ -29,6 +29,7 @@ class AppDarkTheme {
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
+        elevation: 0,
         backgroundColor: colors.primary,
         foregroundColor: colors.light,
         iconSize: 25,

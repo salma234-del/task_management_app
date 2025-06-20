@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:task_management_app/Core/global/theme/app_theme/app_colors.dart';
 import 'package:task_management_app/Core/utils/app_router.dart';
 import 'package:task_management_app/Core/utils/assets.dart';
 
@@ -26,6 +27,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.of(context).background,
       body: Center(
         child: Image.asset(Assets.imagesSplashLogo),
       ),
