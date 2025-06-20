@@ -56,7 +56,7 @@ class AddTaskViewBody extends StatelessWidget {
                             Image.asset(Assets.imagesStar),
                             Text(
                               taskToEdit == null ? AppStrings.newTask : AppStrings.editTask,
-                              style: AppTextStyles.of(context).text24Medium,
+                              style: AppTextStyles.of(context).text20Regular,
                             ),
                           ],
                         ),

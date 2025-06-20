@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:task_management_app/Features/splash/presentation/views/splash_view.dart';
 import 'package:task_management_app/Features/tasks/domain/entities/task_entity.dart';
@@ -15,26 +16,61 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: splash,
-        builder: (context, state) => SplashView(),
+        pageBuilder: (context, state) => _buildTransitionPage(
+          key: state.pageKey,
+          child: SplashView(),
+        ),
       ),
       GoRoute(
         path: AppRouter.tasksList,
-        builder: (context, state) => TasksListView(),
+        pageBuilder: (context, state) => _buildTransitionPage(
+          key: state.pageKey,
+          child: TasksListView(),
+        ),
       ),
       GoRoute(
         path: addTask,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final task = state.extra as TaskEntity?;
-          if (task == null) {
-            return AddTaskView();
-          }
-          return AddTaskView(taskToEdit: task);
+          return _buildTransitionPage(
+            key: state.pageKey,
+            child: AddTaskView(taskToEdit: task),
+          );
         },
       ),
       GoRoute(
         path: AppRouter.searchTasks,
-        builder: (context, state) => SearchTasksView(),
+        pageBuilder: (context, state) => _buildTransitionPage(
+          key: state.pageKey,
+          child: SearchTasksView(),
+        ),
       ),
     ],
   );
+
+  static CustomTransitionPage _buildTransitionPage({
+    required LocalKey key,
+    required Widget child,
+  }) {
+    return CustomTransitionPage(
+      key: key,
+      child: child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 0.1);
+        const end = Offset.zero;
+        const curve = Curves.easeInOut;
+
+        final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        final fadeAnimation = CurvedAnimation(parent: animation, curve: curve);
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: FadeTransition(
+            opacity: fadeAnimation,
+            child: child,
+          ),
+        );
+      },
+    );
+  }
 }
