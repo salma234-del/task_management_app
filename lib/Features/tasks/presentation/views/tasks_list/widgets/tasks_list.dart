@@ -10,7 +10,7 @@ import 'package:task_management_app/Features/tasks/presentation/cubits/delete_ta
 import 'package:task_management_app/Features/tasks/presentation/cubits/get_tasks_by_category_cubit/get_tasks_by_category_cubit.dart';
 import 'package:task_management_app/Features/tasks/presentation/cubits/update_task_cubit/update_task_cubit.dart';
 import 'package:task_management_app/Features/tasks/presentation/views/tasks_list/widgets/task_widget.dart';
-import 'package:task_management_app/Features/tasks/presentation/views/tasks_list/widgets/tasks_loading.dart';
+import 'package:task_management_app/Core/widgets/tasks_loading.dart';
 
 class TasksList extends StatelessWidget {
   const TasksList({super.key});
@@ -31,18 +31,10 @@ class TasksList extends StatelessWidget {
         BlocListener<DeleteTaskCubit, DeleteTaskState>(
           listener: (context, state) {
             if (state is DeleteTaskFailure) {
-              showCustomSnackBar(
-                context: context,
-                message: state.error,
-                isSuccess: false,
-              );
+              _onDeleteTaskFailure(context, state);
             }
             if (state is DeleteTaskSuccess) {
-              showCustomSnackBar(
-                context: context,
-                message: AppStrings.taskDeleted,
-                isSuccess: true,
-              );
+              _onDeleteTaskSuccess(context);
             }
           },
         ),
@@ -76,6 +68,22 @@ class TasksList extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+
+  void _onDeleteTaskSuccess(BuildContext context) {
+    showCustomSnackBar(
+      context: context,
+      message: AppStrings.taskDeleted,
+      isSuccess: true,
+    );
+  }
+
+  void _onDeleteTaskFailure(BuildContext context, DeleteTaskFailure state) {
+    showCustomSnackBar(
+      context: context,
+      message: state.error,
+      isSuccess: false,
     );
   }
 

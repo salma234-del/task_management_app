@@ -29,15 +29,13 @@ class TasksListView extends StatelessWidget {
             actions: [
               IconButton(
                 icon: const Icon(Icons.search),
-                onPressed: () {},
+                onPressed: () => GoRouter.of(context).push(AppRouter.searchTasks),
               ),
             ],
           ),
           body: TasksListViewBody(),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              GoRouter.of(context).push(AppRouter.addTask);
-            },
+            onPressed: () => GoRouter.of(context).push(AppRouter.addTask),
             child: const Icon(Icons.add),
           ),
         ),

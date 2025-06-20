@@ -8,12 +8,14 @@ class CustomTextFormField extends StatelessWidget {
     required this.controller,
     this.readOnly = false,
     this.onTap,
+    this.onChanged,
     super.key,
   });
   final String hintText;
   final TextEditingController controller;
   final bool readOnly;
   final VoidCallback? onTap;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class CustomTextFormField extends StatelessWidget {
           ),
           child: TextFormField(
             controller: controller,
+            onChanged: onChanged,
             validator: emptyValidator,
             decoration: InputDecoration(
               isDense: true,

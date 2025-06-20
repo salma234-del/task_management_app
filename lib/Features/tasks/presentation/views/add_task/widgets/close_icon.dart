@@ -12,7 +12,7 @@ class CloseIcon extends StatelessWidget {
       alignment: AlignmentDirectional.topEnd,
       child: CircleAvatar(
         radius: 30,
-        backgroundColor: AppColors.of(context).secondary,
+        backgroundColor: AppColors.of(context).background,
         child: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () {
