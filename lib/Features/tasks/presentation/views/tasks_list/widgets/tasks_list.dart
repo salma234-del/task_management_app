@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:task_management_app/Core/utils/app_router.dart';
 import 'package:task_management_app/Core/utils/app_strings.dart';
 import 'package:task_management_app/Core/utils/helper_functions/show_custom_snack_bar.dart';
+import 'package:task_management_app/Core/widgets/custom_dialog.dart';
 import 'package:task_management_app/Core/widgets/empty_data_widget.dart';
 import 'package:task_management_app/Features/tasks/domain/entities/task_entity.dart';
 import 'package:task_management_app/Features/tasks/presentation/cubits/delete_task_cubit/delete_task_cubit.dart';
@@ -120,10 +121,19 @@ class TasksList extends StatelessWidget {
   }
 
   void _onDelete(BuildContext context, GetTasksByCategorySuccess state, int index) {
-    context.read<DeleteTaskCubit>().deleteTask(state.tasks[index].id);
-    context.read<GetTasksByCategoryCubit>().getTasksByCategory(
-          state.selectedCategory,
-        );
+    showDialog(
+      context: context,
+      builder: (_) => CustomDialog(
+        title: AppStrings.deleteTask,
+        content: AppStrings.confirmDelete,
+        onConfirm: () {
+          context.read<DeleteTaskCubit>().deleteTask(state.tasks[index].id);
+          context.read<GetTasksByCategoryCubit>().getTasksByCategory(
+                state.selectedCategory,
+              );
+        },
+      ),
+    );
   }
 
   void _onEdit(BuildContext context, GetTasksByCategorySuccess state, int index) {
